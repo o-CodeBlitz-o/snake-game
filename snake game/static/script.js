@@ -6,6 +6,53 @@ const context = canvas.getContext('2d');
 const highScoreDisplay = document.getElementById('highScore');
 const scoreDisplay = document.getElementById('score');
 
+const water_canvas = document.getElementById('rippleCanvas');
+const ctx = water_canvas.getContext('2d');
+
+const ripple = {
+    circles: [],
+    maxRadius: 0,
+    rippleSpeed: 3,
+};
+
+function drawRipple() {
+    ctx.clearRect(0, 0, water_canvas.width, water_canvas.height);
+
+    for (let i = 0; i < ripple.circles.length; i++) {
+        const circle = ripple.circles[i];
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(251, 149, 149, ${circle.alpha})`;
+
+
+        ctx.stroke();
+        circle.radius += ripple.rippleSpeed;
+        circle.alpha -= 0.02;
+
+        if (circle.alpha <= 0) {
+            ripple.circles.splice(i, 1);
+            i--;
+        }
+    }
+}
+
+function createRipple(x, y) {
+    ripple.circles.push({
+        x,
+        y,
+        radius: 1,
+        alpha: 1,
+    });
+}
+
+
+function animate() {
+    drawRipple();
+    requestAnimationFrame(animate);
+}
+
+
+
 // Define constants for the game grid and initialize a counter for controlling the game loop speed
 const grid = 16;
 let count = 0;
@@ -56,7 +103,7 @@ function loop() {
     requestAnimationFrame(loop);
 
     // Control the frame rate
-    if (++count < 5) return;
+    if (++count < 6) return;
     count = 0;
 
     // Clear the canvas for redrawing
@@ -75,6 +122,7 @@ function loop() {
 function moveSnake() {
     snake.x += snake.dx;
     snake.y += snake.dy;
+    createRipple(snake.x, snake.y);
 }
 
 // Function to wrap the snake around the edges of the canvas
@@ -157,6 +205,8 @@ document.addEventListener('keydown', e => {
     else if (e.code === "ArrowRight" && snake.dx === 0) { snake.dx = grid; snake.dy = 0; }
     else if (e.code === "ArrowDown" && snake.dy === 0) { snake.dy = grid; snake.dx = 0; }
 });
+
+animate();
 
 // Start the game
 requestAnimationFrame(loop);
