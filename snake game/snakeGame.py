@@ -18,7 +18,6 @@ def GetHighScore():
         content = file.read()
 
     data_dict = {"data": content}
-    print("sending: ", data_dict)
     return jsonify(data_dict)
 
 
@@ -27,13 +26,10 @@ def HighScore():
     # Get the JSON data from the request
     json_data = request.get_json()
     highscore_value = json_data.get('highscore')
-    print("received: ", highscore_value)
 
     with open(score_file, 'r') as file:
         content = file.read()
-    print("current file data ", content)
     if content < highscore_value:
-        print("writing")
         with open(score_file, 'w') as file:
             file.write(str(highscore_value))
 
