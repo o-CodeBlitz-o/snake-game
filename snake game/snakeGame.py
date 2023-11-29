@@ -37,4 +37,4 @@ def HighScore():
 
 
 if __name__ == "__main__":
-    app.run(host="192.168.0.103", port="8500", debug=True)
+    app.run(debug=True) //run at local host
