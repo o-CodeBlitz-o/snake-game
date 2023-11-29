@@ -1,0 +1,42 @@
+/* General styles for the whole page */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-image: url('../static/bg.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Styling for the main Snake Game container */
+.SnakeGame {
+    background: linear-gradient(45deg, #fb9595, #244c85);
+    box-shadow: 0 1px 20px rgb(0, 241, 89);
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for headings */
+h1 {
+    color: aliceblue;
+    margin-top: 0; /* Removes default margin from h1 */
+    text-align: center;
+}
+
+/* Styling for score display */
+.score {
+    margin: 10px 15px;
+    margin-bottom: 20px;
+}
+
+/* Styling for the game canvas*/
+.game {
+    margin: 10px 9px;
+    border: 5px solid #fff;
+}
