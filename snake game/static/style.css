@@ -40,3 +40,11 @@ h1 {
     margin: 10px 9px;
     border: 5px solid #fff;
 }
+
+#rippleCanvas{
+   position: absolute;
+    display: block;
+    margin: auto;
+    border: 1px solid #000;
+
+}
