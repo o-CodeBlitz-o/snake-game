@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 
-score_file = "C:/Users/User/Desktop/myProjects/snake game/static/highscore.txt"
+score_file = "snake game/static/highscore.txt"
 
 
 @app.route('/')
