@@ -80,9 +80,12 @@ function getHighScore() {
 }
 
 // Function to update the high score on the server
-function updateHighScore(highscoreValue) {
-    console.log(highscoreValue);
-    localStorage.setItem('highscore', highscoreValue);
+function updateHighScore(scoreValue) {
+    console.log(scoreValue);
+    var highscore = localStorage.getItem('highscore') || 0;
+    if(highscore < scoreValue){
+        localStorage.setItem('highscore', scoreValue);
+    }
 }
 
 // Function to generate a random integer between min and max
