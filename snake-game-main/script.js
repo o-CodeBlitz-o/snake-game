@@ -75,18 +75,23 @@ getHighScore();
 
 // Function to fetch the high score from the server
 function getHighScore() {
-    highScoreDisplay.textContent = localStorage.getItem('highscore') || 0;
-    console.log(localStorage.getItem('highscore') || 0);
+    const currentHighScore = localStorage.getItem('highscore') || 0;
+    highScoreDisplay.textContent = currentHighScore;
+    console.log('Current High Score:', currentHighScore);
 }
 
-// Function to update the high score on the server
 function updateHighScore(scoreValue) {
-    console.log(scoreValue);
-    var highscore = localStorage.getItem('highscore') || 0;
-    if(highscore < scoreValue){
+    console.log('New Score:', scoreValue);
+    const currentHighScore = parseInt(localStorage.getItem('highscore')) || 0;
+
+    if (parseInt(scoreValue) > currentHighScore) {
         localStorage.setItem('highscore', scoreValue);
+        console.log('High Score Updated:', scoreValue);
+    } else {
+        console.log('High Score not updated. Current High Score:', currentHighScore);
     }
 }
+
 
 // Function to generate a random integer between min and max
 function getRandomInt(min, max) {
